@@ -27,13 +27,12 @@ train_y = train[["quality"]]
 test_y = test[["quality"]]
 
 model = xgboost.XGBRegressor()
-model.fit(train_x, train_y)
+model.fit(train_x.values, train_y.values)
 
-predicted_qualities = model.predict(test_x)
+predicted_qualities = model.predict(test_x.values)
 
 (rmse, mae, r2) = eval_metrics(test_y, predicted_qualities)
 
-# print("Elasticnet model (alpha=%f, l1_ratio=%f):" % (alpha, l1_ratio))
 print("  RMSE: %s" % rmse)
 print("  MAE: %s" % mae)
 print("  R2: %s" % r2)
